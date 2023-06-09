@@ -2,7 +2,7 @@
 session_start(); 
 // Démarre une session pour utiliser les variables de session
 
-if (!empty($_POST) && !empty($_POST['mail']) && !empty($_POST['mp'])) {
+if (!empty($_POST) && !empty($_POST['mail']) && !empty($_POST['password'])) {
 
     require_once 'include/db.php'; 
     // Inclut le fichier contenant la connexion à la base de données
@@ -24,7 +24,7 @@ if (!empty($_POST) && !empty($_POST['mail']) && !empty($_POST['mp'])) {
         $roles = $reqRoles->fetchAll(PDO::FETCH_COLUMN);
 
 
-        if(password_verify($_POST['mp'], $user->mp)){
+        if(password_verify($_POST['password'], $user->mp)){
              // Vérifie si le mot de passe fourni correspond au mot de passe haché stocké en base de données
             $_SESSION['auth'] = $user;
             
