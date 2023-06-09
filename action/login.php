@@ -27,6 +27,7 @@ if (!empty($_POST) && !empty($_POST['mail']) && !empty($_POST['password'])) {
         if(password_verify($_POST['password'], $user->mp)){
              // Vérifie si le mot de passe fourni correspond au mot de passe haché stocké en base de données
             $_SESSION['auth'] = $user;
+            $_SESSION['admin'] = $user;
             
             if (in_array('ADMIN', $roles)) {
                 // Utilisateur a le rôle ADMIN
