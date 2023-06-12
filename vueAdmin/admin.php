@@ -2,9 +2,9 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost:8889;dbname=app-role;', 'root', 'root');
 if(!$_SESSION['admin']) {
-    header('Location: login.php');
+    header('Location: ../connexion.php');
+    exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ if(!$_SESSION['admin']) {
     <title>Admin</title>
 </head>
 <body>
-    <?php include '../include/menu.php' ?>
+    <?php include 'menu.php' ?>
     <h1 class="text-center mt-5">Bienvenue sur la page Admin</h1>
 
     <div class="container-fluid position-relative">
@@ -36,8 +36,8 @@ if(!$_SESSION['admin']) {
     $recupUsers = $bdd->query('SELECT * FROM user');
     while ($user = $recupUsers->fetch()) {
        ?>
-       <p><?=  $user['name'];?> <button><a href="bannir.php?id=<?= $user['id']; ?>" style="color:red;
-       text-decoration: none">Bannir le membre</a></button></p>
+       <p style="display:flex; justify-content:center; align-items:center; padding-top: 2em"><?=  $user['name'];?><button><a href="bannir.php?id=<?= $user['id']; ?>" style="color:red;
+       text-decoration: none;">Bannir le membre</a></button></p>
        <?php
     }
     
