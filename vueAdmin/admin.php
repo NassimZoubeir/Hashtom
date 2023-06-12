@@ -1,3 +1,12 @@
+<?php 
+session_start();
+$bdd = new PDO('mysql:host=localhost:8889;dbname=app-role;', 'root', 'root');
+if(!$_SESSION['admin']) {
+    header('Location: login.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +24,24 @@
     <title>Admin</title>
 </head>
 <body>
+    <?php include '../include/menu.php' ?>
     <h1 class="text-center mt-5">Bienvenue sur la page Admin</h1>
 
     <div class="container-fluid position-relative">
         <img src="../assets/images/goku2.png" alt="Image de Goku" class="img-fluid rounded mx-auto d-block">
     </div>
+
+    <?php 
+
+    $recupUsers = $bdd->query('SELECT * FROM user');
+    while ($user = $recupUsers->fetch()) {
+       ?>
+       <p><?=  $user['name'];?> <button><a href="bannir.php?id=<?= $user['id']; ?>" style="color:red;
+       text-decoration: none">Bannir le membre</a></button></p>
+       <?php
+    }
+    
+    ?>
+
 </body>
 </html>
