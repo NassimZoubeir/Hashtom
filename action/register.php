@@ -53,6 +53,22 @@ if(isset($_POST['submit'])){
         // Execution pour insertion en base de donnée
         $statement->execute();
         $_SESSION['flash']['success'] = 'Votre compte a bien été créé merci de vous connecter';
+
+        // Après l'exécution réussie de la requête d'insertion et avant la redirection vers la page de connexion, vous pouvez ajouter le code suivant :
+
+        // Récupérer l'ID de l'utilisateur nouvellement inscrit
+        $userID = $pdo->lastInsertId();
+
+        // Récupérer l'ID du rôle "user"
+        $roleID = 3;
+
+        // Insérer l'association utilisateur-rôle dans la table user_has_role
+        $query = "INSERT INTO user_has_role (user_id, role_id) VALUES (:user_id, :role_id)";
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':user_id', $userID);
+        $statement->bindParam(':role_id', $roleID);
+        $statement->execute();
+
         header('Location: ./connexion.php');
         exit();
     }

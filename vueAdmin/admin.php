@@ -27,17 +27,13 @@ if(!$_SESSION['admin']) {
     <?php include 'menu.php' ?>
     <h1 class="text-center mt-5">Bienvenue sur la page Admin</h1>
 
-    <!-- <div class="container-fluid position-relative">
-        <img src="../assets/images/goku2.png" alt="Image de Goku" class="img-fluid rounded mx-auto d-block">
-    </div> -->
-
     <?php 
 
     $recupUsers = $bdd->query('SELECT * FROM user');
     while ($user = $recupUsers->fetch()) {
        ?>
        <p style="display:flex; justify-content:center; align-items:center; padding-top: 2em"><?=  $user['name'];?><button><a href="bannir.php?id=<?= $user['id']; ?>" style="color:red;
-       text-decoration: none;">Bannir le membre</a></button></p>
+       text-decoration: none;">Supprimer le membre</a></button></p>
        <?php
     }
     
