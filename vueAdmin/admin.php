@@ -27,9 +27,9 @@ if(!$_SESSION['admin']) {
     <?php include 'menu.php' ?>
     <h1 class="text-center mt-5">Bienvenue sur la page Admin</h1>
 
-    <div class="container-fluid position-relative">
+    <!-- <div class="container-fluid position-relative">
         <img src="../assets/images/goku2.png" alt="Image de Goku" class="img-fluid rounded mx-auto d-block">
-    </div>
+    </div> -->
 
     <?php 
 
